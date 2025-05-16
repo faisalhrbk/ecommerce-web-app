@@ -1,7 +1,7 @@
 import { TbBrandMeta } from "react-icons/tb";
 import { IoLogoInstagram } from "react-icons/io5";
 import { RiTwitterXLine } from "react-icons/ri";
-const TopBar = () => {
+const Topbar = () => {
     return (
         <div className="bg-red-600 text-white">
             <div className="container mx-auto flex justify-between items-center py-3 px-4">
@@ -29,4 +29,4 @@ const TopBar = () => {
     );
 };
 
-export default TopBar;
+export default Topbar;

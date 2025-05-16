@@ -1,12 +1,14 @@
-import TopBar from "../layout/TopBar";
+import Topbar from "../layout/Topbar";
+import  Navbar from "./Navbar"
 
 const Header = () => {
 	return (
 		<div>
 			{/* Topbar */}
-			<TopBar />
-			{/* Navbar */}
-			{/* Cart Drawer */}
+			<Topbar />
+            {/* Navbar */}
+            <Navbar />
+            {/* Cart Drawer */}
 		</div>
 	);
 };
