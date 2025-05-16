@@ -38,8 +38,10 @@ const Navbar = () => {
 							6
 						</span>
 					</button>
-					{/* search icon */}
-					<SearchBar />
+					{/* search   */}
+					<div className="overflow-hidden">
+						<SearchBar />
+					</div>
 
 					{/* burger menu icon for small screen */}
 					<button className="md:hidden">

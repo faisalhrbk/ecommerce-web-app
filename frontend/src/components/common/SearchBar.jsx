@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { HiMagnifyingGlass } from "react-icons/hi2";
+import { HiMagnifyingGlass, HiMiniXMark } from "react-icons/hi2";
 
 const SearchBar = () => {
 	const [searchTerm, setSearchTerm] = useState();
@@ -8,6 +8,11 @@ const SearchBar = () => {
 		setIsOpen(!isOpen);
 	};
 
+	const handleSearch = (e) => {
+		e.preventDefault();
+		console.log("search term", searchTerm);
+        setIsOpen(false)
+	};
 	return (
 		<div
 			className={`flex  items-center justify-center w-full transition-all duration-300  ${
@@ -15,22 +20,34 @@ const SearchBar = () => {
 			}`}
 		>
 			{isOpen ? (
-				<form className="relative flex items-center justify-center w-full">
+				<form
+					onSubmit={handleSearch}
+					className="relative flex items-center justify-center w-full"
+				>
 					<div className="relative w-1/2">
 						<input
 							type="text"
 							placeholder="search"
 							value={searchTerm}
+							onChange={(e) => setSearchTerm(e.target.value)}
 							className="bg-gray-100 px-4 py-2 pl-2 pr-12 rounded-lg focus:outline-none w-full"
 						/>
 						{/* search icon */}
 						<button
 							type="submit"
-							className="absolute right-4 top-1/2 transform -translate-y-1/2 text-gray-600  hover:text-red-900"
+							className="absolute right-4 top-1/2 transform -translate-y-1/2 text-gray-600  hover:text-gray-900"
 						>
 							<HiMagnifyingGlass className="h-6 w-6" />
 						</button>
 					</div>
+					{/* cose icon */}
+					<button
+						type="button"
+						onClick={handleSearchToggle}
+						className="absolute right-4 top-1/2 transform -translate-y-1/2 text-gray-600 hover:text-gray-900"
+					>
+						<HiMiniXMark className="h-6 w-6" />
+					</button>
 				</form>
 			) : (
 				<button onClick={handleSearchToggle}>
