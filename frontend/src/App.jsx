@@ -12,6 +12,7 @@ const App = () => {
 				<Route>{/*Admin Layout*/}</Route>
 			</Routes>
 		</BrowserRouter>
+
 	);
 };
 

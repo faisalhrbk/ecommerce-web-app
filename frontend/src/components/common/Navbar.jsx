@@ -1,5 +1,7 @@
 import { NavLink } from "react-router-dom";
-export const Navbar = () => {
+import {HiOutlineUser, HiOutlineShoppingBag, HiBars3BottomRight} from "react-icons/hi2";
+
+const Navbar = () => {
 	return (
 		<>
 			<nav className="container mx-auto flex items-center justify-between py-4 px-6">
@@ -21,7 +23,26 @@ export const Navbar = () => {
 						Bottom Wear
 					</NavLink>
 				</div>
+				{/* right - icons */}
+				<div className="flex items-center space-x-4">
+					<NavLink to="/profile" className="hover:text-black">
+						<HiOutlineUser className="h-6 w-6 text-gray-700" />{" "}
+					</NavLink>
+					<button className="relative hover:text-black">
+						<HiOutlineShoppingBag className="h-6 w-6 text-gray-700" />
+						<span className="absolute bg-red-600 text-white text-sm rounded-full px-2 -top-1 ">6</span>
+					</button>
+					{/* search icon */}
+
+
+					{/* burger menu icon for small screen */}
+					<button className="md:hidden">
+						<HiBars3BottomRight className="h-6 w-6 text-gray-700"/>
+					</button>
+
+				</div>
 			</nav>
 		</>
 	);
 };
+export default Navbar;
