@@ -5,6 +5,7 @@ import {
 	HiBars3BottomRight,
 } from "react-icons/hi2";
 import SearchBar from "./SearchBar"
+import CartDrawer from "../layout/CartDrawer";
 const Navbar = () => {
 	return (
 		<>
@@ -30,7 +31,7 @@ const Navbar = () => {
 				{/* right - icons */}
 				<div className="flex items-center space-x-4">
 					<NavLink to="/profile" className="hover:text-black">
-						<HiOutlineUser className="h-6 w-6 text-gray-700" />{" "}
+						<HiOutlineUser className="h-6 w-6 text-gray-700" />
 					</NavLink>
 					<button className="relative hover:text-black">
 						<HiOutlineShoppingBag className="h-6 w-6 text-gray-700" />
@@ -49,6 +50,7 @@ const Navbar = () => {
 					</button>
 				</div>
 			</nav>
+			<CartDrawer/>
 		</>
 	);
 };

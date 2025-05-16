@@ -3,13 +3,14 @@ import  Navbar from "./Navbar"
 
 const Header = () => {
 	return (
-		<div>
+		<div className="border-b border-gray-200 shadow-lg">
 			{/* Topbar */}
 			<Topbar />
             {/* Navbar */}
             <Navbar />
             {/* Cart Drawer */}
 		</div>
+
 	);
 };
 
