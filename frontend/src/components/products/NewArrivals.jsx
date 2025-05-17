@@ -115,7 +115,6 @@ const NewArrivals = () => {
 	const [isDragging, setIsDragging] = useState(false);
 	const [startX, setStartX] = useState(0);
 	const [scrollLeft, setScrollLeft] = useState(false);
-	const [scrollRight, seScrollRight] = useState(true);
 	const [canScrollLeft, setCanScrollLeft] = useState(false);
 	const [canScrollRight, setCanScrollRight] = useState(false);
 	// update scroll buttons
@@ -141,20 +140,35 @@ const NewArrivals = () => {
 		}
 	};
 
-    const handleMouseDown = e => {
-        setIsDragging(true);
-        setStartX(e.pageX - scrollRef.current.offsetLeft)
-    }
-
 	useEffect(() => {
 		const container = scrollRef.current;
 		if (container) {
 			container.addEventListener("scroll", updateScrollButtons);
+			updateScrollButtons();
+			return () => container.removeEventListener("scroll", updateScrollButtons);
 		}
-	});
+	}, []);
+
+	// handle scroll by mouse this is fucking scary bruhh i should better ask chatGpt
+	const handleMouseDown = (e) => {
+		setIsDragging(true);
+		setStartX(e.pageX - scrollRef.current.offsetLeft);
+		setScrollLeft(scrollRef.current.scrollLeft);
+	};
+
+	const handleMouseMove = (e) => {
+		if (!isDragging) return;
+		const x = e.pageX - scrollRef.current.offsetLeft;
+		const walk = x - startX;
+		scrollRef.current.scrollLeft = scrollLeft - walk;
+	};
+
+	const handleMouseUpOrLeave = () => {
+		setIsDragging(false);
+	};
 
 	return (
-		<section>
+		<section className="py-16 px-4 lg:px-0">
 			<div className="container mx-auto text-center mb-10 relative">
 				<h2 className="text-3xl font-bold mb-4">New Arrivals</h2>
 				<p className="text-lg text-gray-600 mb-8">
@@ -191,9 +205,11 @@ const NewArrivals = () => {
 				ref={scrollRef}
 				onMouseDown={handleMouseDown}
 				onMouseMove={handleMouseMove}
-				onMouseUp={hadleMouseUpOrLeave}
-				onMouseLeave={hadleMouseUpOrLeave}
-				className="container mx-auto overflow-x-scroll flex space-x-6 relative pb-4"
+				onMouseUp={handleMouseUpOrLeave}
+				onMouseLeave={handleMouseUpOrLeave}
+				className={`container mx-auto overflow-x-scroll flex space-x-6 relative pb-4 ${
+					isDragging ? "cursor-grabbing" : "cursor-grab"
+				}`}
 			>
 				{products.map((product, index) => (
 					<div
@@ -204,6 +220,7 @@ const NewArrivals = () => {
 							className="w-full h-[500px] object-cover rounded-lg"
 							src={product.images[0]?.url}
 							alt={product.images[0]?.altText}
+							draggable="false"
 						/>
 						<div className="absolute bottom-0 left-0 right-0 bg-black/10 backdrop-blur-md text-white p-4 rounded-b-lg">
 							<h4 className="font-medium">{product.name}</h4>

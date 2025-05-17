@@ -1,20 +1,24 @@
+import Hero from "../components/layout/Hero";
+import GenderCollection from "../components/products/GenderCollection";
+import NewArrivals from "../components/products/NewArrivals";
+import ProductDetails from "../components/products/ProductDetails";
 
-import Hero from "../components/layout/Hero"
-import GenderCollection from "../components/products/GenderCollection"
-import NewArrivals from "../components/products/NewArrivals"
 const Home = () => {
-  return (
-    <div>
-        <Hero/>
+	return (
+		<div>
+			<Hero />
 
-        {/* gender collection for home page */}
-        <GenderCollection/>
+			{/* gender collection for home page */}
+			<GenderCollection />
 
-        {/* new arrival for home page */}
-        <NewArrivals/>
-        
-    </div>
-  )
-}
+			{/* new arrival for home page */}
+			<NewArrivals />
 
-export default Home
+			{/* best seller */}
+
+            <ProductDetails/>
+		</div>
+	);
+};
+
+export default Home;
