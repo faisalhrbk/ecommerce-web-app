@@ -1,3 +1,5 @@
+import { useEffect, useState } from "react";
+
 const ProductDetails = () => {
 	const selectedProduct = {
 		name: "Stylish Jacked",
@@ -20,6 +22,12 @@ const ProductDetails = () => {
 			},
 		],
 	};
+	const [mainImage, setMainImage] = useState("");
+	useEffect(() => {
+		if (selectedProduct?.images?.length > 0) {
+			setMainImage(selectedProduct.images[0].url);
+		}
+	}, [selectedProduct]);
 	return (
 		<section>
 			<h2 className="text-3xl text-center font-bold mb-4">Best Seller</h2>
@@ -33,6 +41,7 @@ const ProductDetails = () => {
 								src={image.url}
 								alt={image.altText}
 								className="w-20 h-20 object-cover rounded-lg cursor-pointer border"
+								onClick={() => setMainImage(image.url)}
 							/>
 						))}
 					</div>
@@ -41,7 +50,7 @@ const ProductDetails = () => {
 					<div className="md:w-1/2 w-3/5">
 						<div className="mb-4">
 							<img
-								src={selectedProduct.images[0]?.url}
+								src={mainImage}
 								alt=""
 								className="w-full h-auto object-cover rounded-lg"
 							/>
